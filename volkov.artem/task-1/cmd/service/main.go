@@ -16,7 +16,11 @@ func main() {
 		fmt.Println("Invalid second operand")
 		return
 	}
-	fmt.Scan(&operand)
+	_, err = fmt.Scan(&operand)
+	if err != nil {
+		fmt.Println("Invalid operand")
+		return
+	}
 	switch operand {
 	case "+":
 		fmt.Println(firstInt + secondInt)
