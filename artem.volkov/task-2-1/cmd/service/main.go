@@ -43,14 +43,15 @@ func (tm *TemperatureManager) GetTemperature() int {
 }
 
 func main() {
-	var n, k int
+	var n int
 	if _, err := fmt.Scan(&n); err != nil {
 		return
 	}
-	if _, err := fmt.Scan(&k); err != nil {
-		return
-	}
 	for i := 0; i < n; i++ {
+		var k int
+		if _, err := fmt.Scan(&k); err != nil {
+			return
+		}
 		manager := NewTemperatureManager()
 		for j := 0; j < k; j++ {
 			var sign string
