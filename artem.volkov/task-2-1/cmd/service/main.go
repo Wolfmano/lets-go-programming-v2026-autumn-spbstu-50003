@@ -28,6 +28,7 @@ func (tm *TemperatureManager) UpdateTemperature(sign string, temp int) {
 		if temp < tm.maxTemp {
 			tm.maxTemp = temp
 		}
+
 	case GreaterOrEqual:
 		if temp > tm.minTemp {
 			tm.minTemp = temp
@@ -39,30 +40,41 @@ func (tm *TemperatureManager) GetTemperature() int {
 	if tm.minTemp > tm.maxTemp {
 		return -1
 	}
+
 	return tm.minTemp
 }
 
 func main() {
-	var n int
-	if _, err := fmt.Scan(&n); err != nil {
+	var departmentsCount int
+
+	if _, err := fmt.Scan(&departmentsCount); err != nil {
 		return
 	}
-	for i := 0; i < n; i++ {
-		var k int
-		if _, err := fmt.Scan(&k); err != nil {
+
+	for range departmentsCount {
+		var employeesCount int
+
+		if _, err := fmt.Scan(&employeesCount); err != nil {
 			return
 		}
+
 		manager := NewTemperatureManager()
-		for j := 0; j < k; j++ {
+
+		for range employeesCount {
 			var sign string
+
 			var temp int
+
 			if _, err := fmt.Scan(&sign); err != nil {
 				return
 			}
+
 			if _, err := fmt.Scan(&temp); err != nil {
 				return
 			}
+
 			manager.UpdateTemperature(sign, temp)
+
 			fmt.Println(manager.GetTemperature())
 		}
 	}
