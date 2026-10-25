@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+)
 
 const (
 	MinTemperature = 15
@@ -48,6 +51,8 @@ func main() {
 	var departmentsCount int
 
 	if _, err := fmt.Scan(&departmentsCount); err != nil {
+		fmt.Fprintln(os.Stderr, fmt.Errorf("ошибка чтения количества отделов: %w", err))
+
 		return
 	}
 
@@ -55,6 +60,8 @@ func main() {
 		var employeesCount int
 
 		if _, err := fmt.Scan(&employeesCount); err != nil {
+			fmt.Fprintln(os.Stderr, fmt.Errorf("ошибка чтения количества сотрудников: %w", err))
+
 			return
 		}
 
@@ -66,10 +73,14 @@ func main() {
 			var temp int
 
 			if _, err := fmt.Scan(&sign); err != nil {
+				fmt.Fprintln(os.Stderr, fmt.Errorf("ошибка чтения знаков: %w", err))
+
 				return
 			}
 
 			if _, err := fmt.Scan(&temp); err != nil {
+				fmt.Fprintln(os.Stderr, fmt.Errorf("ошибка чтения температуры: %w", err))
+
 				return
 			}
 
